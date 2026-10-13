@@ -1,0 +1,34 @@
+# sha256 manifest for the assets that are NOT versioned in this repository.
+#
+# Verify / fetch with:
+#     python3 scripts/download_assets.py --check
+#     python3 scripts/download_assets.py
+#
+# Format: <sha256>  <path relative to the repository root>
+#
+# The dataset hash below (95a20e22...dcfe) is the one reported in Table I of
+# the paper. It must never change: the dataset content is frozen.
+
+95a20e222a46057d1bfc3cb1d55c359fa1bca9d9ac064b8302c4bd2ceabdfcfe  tile-obstacle-maps.npz
+
+# Checkpoints, six training seeds (101-106). Seed 101 is the one the complete
+# evaluation battery was run with. NOT UPLOADED YET -- see the TODO on
+# CHECKPOINT_BASE_URL in scripts/download_assets.py.
+fe1f300ef60ee34ba97392f8a6d811b5217d30ab21063496b3d5ae52d6822a3a  artifacts/ckpt_tiles_seed101/diffusion_model.pt
+940d42ffe96b809db8a9a237cbba176d23d0116ba55068fbefb20101a7942d54  artifacts/ckpt_tiles_seed101/modelo_final_ema.pt
+006298a9c3a5ee908a12552040905683dad27e970d164ed30fe1e10abd1366ad  artifacts/ckpt_tiles_seed101/ultimo.pt
+8fc7c0c7bbab2cd5c09c5ac03b2d152470f69ba75afc9d0baf855dc9a4df94cf  artifacts/ckpt_tiles_seed102/diffusion_model.pt
+65c5296a7cc36d2f544f65b216e9455677611412a486edbedb9f78938166f5aa  artifacts/ckpt_tiles_seed102/modelo_final_ema.pt
+a762b22ddff311269ddf0a59f0a8f6fccdae6cd46308ca80f1fe6b0aa4b2f823  artifacts/ckpt_tiles_seed102/ultimo.pt
+78643f64ef571e21c7db6fe58864ff74fdc62ea31ff3e24c16f051011317c78a  artifacts/ckpt_tiles_seed103/diffusion_model.pt
+d1555b866c171112a3ff9d21c44d35387653167132893c67695e566670eb66b0  artifacts/ckpt_tiles_seed103/modelo_final_ema.pt
+22d3222e077dbd126376ccffe9a461405add60206abe016589f57d34c70a70b1  artifacts/ckpt_tiles_seed103/ultimo.pt
+ee00e2523bd8eecbb82f65cce7f7574cc29382a5079078bc21141e1f3d174667  artifacts/ckpt_tiles_seed104/diffusion_model.pt
+a12b4e6e38a236fff0025894af43682c0ba6a90c9de5853db50982eb0aae4ae1  artifacts/ckpt_tiles_seed104/modelo_final_ema.pt
+8a9ae65d7d4dd6358ecb60b19075e04363601b56ad34330f899bcda17fb96451  artifacts/ckpt_tiles_seed104/ultimo.pt
+d4f8e8ff085436b31615c63a7b3961fd468bb79abd164971a53079d40c52721e  artifacts/ckpt_tiles_seed105/diffusion_model.pt
+506c2133db259ff206d5b5075a1d4761853d602b8b7bacf3c88f6b1e30471cfe  artifacts/ckpt_tiles_seed105/modelo_final_ema.pt
+cba792c85e4f3c27454bdd796e0e7504ffa1cb22f98e203a09fa09e31fe6d5d8  artifacts/ckpt_tiles_seed105/ultimo.pt
+e638943b7749da63d0de4d246a88747e0a375eefe3f4ae77f81c139cc13a2c39  artifacts/ckpt_tiles_seed106/diffusion_model.pt
+87141de3d288310271f7ddab75215f35044644d2ee3faeb0bd6a2c926bc18c17  artifacts/ckpt_tiles_seed106/modelo_final_ema.pt
+49f5600a1276f9722fd8f1a4f7d0a38718fb346a563a0aeed1620fed64d45ec4  artifacts/ckpt_tiles_seed106/ultimo.pt

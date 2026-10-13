@@ -1,0 +1,80 @@
+{
+  "test": "/workspace/Universal_Tiles_diffusion/artifacts/test_holdout_dedup.npz",
+  "train_source": "/workspace/Universal_Tiles_diffusion/artifacts/train_only.npz",
+  "n_test": 28232,
+  "n_train": 570000,
+  "descriptor": "16x16 occupancy (r^2 weighted, normalized)",
+  "percentile": 5.0,
+  "threshold_note": "computed separately per n-bin -- see bins[*].threshold",
+  "null_fraction_expected": 0.05,
+  "alert_frac": 0.05,
+  "overall": {
+    "test_tiles": 28232,
+    "below_threshold": 0,
+    "fraction": 0.0,
+    "nn_median": 0.2095249891281128,
+    "nn_min": 0.0005980199784971774,
+    "exact_descriptor_duplicates": 0
+  },
+  "bins": [
+    {
+      "bin_n": "1-10",
+      "test_tiles": 5339,
+      "threshold": 0.0,
+      "threshold_train_sample": 20000,
+      "below_threshold": 0,
+      "fraction": 0.0,
+      "nn_median": 0.23724301159381866,
+      "nn_min": 0.0005980199784971774,
+      "exact_descriptor_duplicates": 0
+    },
+    {
+      "bin_n": "11-20",
+      "test_tiles": 5744,
+      "threshold": 0.21282404735684396,
+      "threshold_train_sample": 20000,
+      "below_threshold": 0,
+      "fraction": 0.0,
+      "nn_median": 0.2469451129436493,
+      "nn_min": 0.2128562480211258,
+      "exact_descriptor_duplicates": 0
+    },
+    {
+      "bin_n": "21-30",
+      "test_tiles": 5684,
+      "threshold": 0.08223862349987031,
+      "threshold_train_sample": 20000,
+      "below_threshold": 0,
+      "fraction": 0.0,
+      "nn_median": 0.21959788352251053,
+      "nn_min": 0.08276411890983582,
+      "exact_descriptor_duplicates": 0
+    },
+    {
+      "bin_n": "31-40",
+      "test_tiles": 5683,
+      "threshold": 0.03062739055603743,
+      "threshold_train_sample": 20000,
+      "below_threshold": 0,
+      "fraction": 0.0,
+      "nn_median": 0.19197168946266174,
+      "nn_min": 0.030739549547433853,
+      "exact_descriptor_duplicates": 0
+    },
+    {
+      "bin_n": "41-50",
+      "test_tiles": 5782,
+      "threshold": 0.022297121305018663,
+      "threshold_train_sample": 20000,
+      "below_threshold": 0,
+      "fraction": 0.0,
+      "nn_median": 0.10916109010577202,
+      "nn_min": 0.022323019802570343,
+      "exact_descriptor_duplicates": 0
+    }
+  ],
+  "leakage_bins": [],
+  "verdict": "OK: no bin above --alert-frac=5.0%; the split looks clean at the '16x16 occupancy' descriptor scale.",
+  "below_threshold_row_positions": [],
+  "below_threshold_note": "row positions WITHIN --test (0-indexed) flagged in ANY bin, not just alerted ones -- see --dedup-out to remove them."
+}

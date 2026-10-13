@@ -1,0 +1,42 @@
+# Data and models -- downloaded separately
+*.npz
+artifacts/ckpt_*/
+*.pt
+*.pth
+
+# Compiled binaries -- rebuild on every machine.
+# Covers BOTH paths that the code and the docs use as the engine:
+# engine/hppm (current scripts) and artifacts/hppm_v2 (the campaign scripts,
+# which were written against that path). An inherited binary silently
+# produces zero successes, so neither one is versioned.
+engine/hppm
+artifacts/hppm_v2
+artifacts/hppm
+engine/*.o
+*.so
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Logs and temporaries
+*.log
+artifacts/pending/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# ---------------------------------------------------------------------------
+# Exceptions: the traceability of the paper's numbers IS versioned.
+# (*.npz, *.pt, *.log and artifacts/pending/ are the only rules that could
+#  reach it, and all three refer to data files, not JSON.)
+# ---------------------------------------------------------------------------
+!*.meta.json
+!artifacts/**/*.meta.json
+!artifacts/metrics_seed*/**/*.json
+!artifacts/leakage_report_dedup.json

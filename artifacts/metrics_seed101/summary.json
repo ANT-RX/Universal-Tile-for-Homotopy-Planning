@@ -1,0 +1,1144 @@
+{
+  "_config": {
+    "model_dir": "artifacts/ckpt_tiles_seed101",
+    "hppm_exe": "artifacts/hppm_v2",
+    "training_data": "tile-obstacle-maps.npz",
+    "reference_data": "artifacts/test_holdout_dedup.npz",
+    "output_dir": "artifacts/metrics_seed101",
+    "tests": [
+      "cost"
+    ],
+    "workers": 30,
+    "seed": 42,
+    "guidance": 1.0,
+    "ports_per_side": 3,
+    "port_margin": 0.04,
+    "max_cluster": 4,
+    "n_per_bin": 6000,
+    "n_cost_rejection": 200000,
+    "n_cost_diffusion": 5000,
+    "n_ablation": 3000,
+    "ddim_steps_to_test": [
+      10,
+      25,
+      50,
+      100,
+      250
+    ],
+    "n_diversity": 8000,
+    "n_reference": 1000,
+    "chamfer_pairs": 2000,
+    "memorization_samples": 20000,
+    "mosaic_sizes": [
+      3,
+      5,
+      8
+    ],
+    "mosaic_repetitions": 30,
+    "max_cell_retries": 20,
+    "target_per_cell": 15.0,
+    "mosaic_obstacle_cap": 900,
+    "dataset_generation_worker_hours": null,
+    "training_log": "train_seed101.log",
+    "training_gpu_hours": null,
+    "gpu_name": "RTX 4090"
+  },
+  "diversity": {
+    "sampling_regime": "checkpoint_n_distribution",
+    "n_generated_analyzed": 1273,
+    "n_reference": 1000,
+    "reference_data": "/workspace/Universal_Tiles_diffusion/artifacts/test_holdout_dedup.npz",
+    "C2ST_auc": 0.5422,
+    "C2ST_auc_ci95": [
+      0.5185,
+      0.5659
+    ],
+    "C2ST_auc_p_value": 0.0005,
+    "C2ST_auc_without_num_obs": 0.5423,
+    "C2ST_auc_ci95_without_num_obs": [
+      0.5186,
+      0.566
+    ],
+    "C2ST_auc_p_value_without_num_obs": 0.0005,
+    "C2ST_interpretation": "~0.5 = indistinguishable from real (good); ~1.0 = the classifier separates them perfectly (the model does not capture the real distribution). The 95% CI (Hanley-McNeil) must CONTAIN 0.5 to claim 'indistinguishable from real' -- a point estimate near 0.5 whose CI excludes it is evidence of a real, if small, difference, not noise.",
+    "chamfer_diversity": {
+      "generated": 0.14782,
+      "real": 0.15132,
+      "interpretation": "generated << real suggests mode collapse (little variety)"
+    },
+    "memorization": {
+      "nn_generated_to_train_median": 0.27704,
+      "nn_reference_test_to_train_median": 0.28323,
+      "threshold_p5_test_to_train": 0.2098,
+      "frac_generated_closer_than_real_p5": 0.0573,
+      "n_train_compared": 20000,
+      "training_index_data": "/workspace/Universal_Tiles_diffusion/tile-obstacle-maps.npz",
+      "interpretation": "high fraction = the model is copying tiles from the training set instead of generating new ones; the threshold is where the closest 5% of held-out real tiles to the training set sits"
+    }
+  },
+  "mosaics": {
+    "detail": [
+      {
+        "side": 3,
+        "rep": 0,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 3,
+        "first_try": false,
+        "time_sec": 5.6
+      },
+      {
+        "side": 3,
+        "rep": 1,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 4.5
+      },
+      {
+        "side": 3,
+        "rep": 2,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 5.1
+      },
+      {
+        "side": 3,
+        "rep": 3,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 0,
+        "first_try": true,
+        "time_sec": 3.8
+      },
+      {
+        "side": 3,
+        "rep": 4,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 1,
+        "first_try": false,
+        "time_sec": 4.4
+      },
+      {
+        "side": 3,
+        "rep": 5,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 5.5
+      },
+      {
+        "side": 3,
+        "rep": 6,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 0,
+        "first_try": true,
+        "time_sec": 3.9
+      },
+      {
+        "side": 3,
+        "rep": 7,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 3,
+        "first_try": false,
+        "time_sec": 5.1
+      },
+      {
+        "side": 3,
+        "rep": 8,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 5,
+        "first_try": false,
+        "time_sec": 5.5
+      },
+      {
+        "side": 3,
+        "rep": 9,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 5.2
+      },
+      {
+        "side": 3,
+        "rep": 10,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 0,
+        "first_try": true,
+        "time_sec": 3.9
+      },
+      {
+        "side": 3,
+        "rep": 11,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 0,
+        "first_try": true,
+        "time_sec": 4.1
+      },
+      {
+        "side": 3,
+        "rep": 12,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 134,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 5.3
+      },
+      {
+        "side": 3,
+        "rep": 13,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 134,
+        "retries": 0,
+        "first_try": true,
+        "time_sec": 4.0
+      },
+      {
+        "side": 3,
+        "rep": 14,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 4.7
+      },
+      {
+        "side": 3,
+        "rep": 15,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 4.7
+      },
+      {
+        "side": 3,
+        "rep": 16,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 1,
+        "first_try": false,
+        "time_sec": 4.3
+      },
+      {
+        "side": 3,
+        "rep": 17,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 1,
+        "first_try": false,
+        "time_sec": 4.1
+      },
+      {
+        "side": 3,
+        "rep": 18,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 4.4
+      },
+      {
+        "side": 3,
+        "rep": 19,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 3,
+        "first_try": false,
+        "time_sec": 4.7
+      },
+      {
+        "side": 3,
+        "rep": 20,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 1,
+        "first_try": false,
+        "time_sec": 4.1
+      },
+      {
+        "side": 3,
+        "rep": 21,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 4.6
+      },
+      {
+        "side": 3,
+        "rep": 22,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 6,
+        "first_try": false,
+        "time_sec": 5.4
+      },
+      {
+        "side": 3,
+        "rep": 23,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 1,
+        "first_try": false,
+        "time_sec": 4.2
+      },
+      {
+        "side": 3,
+        "rep": 24,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 1,
+        "first_try": false,
+        "time_sec": 4.1
+      },
+      {
+        "side": 3,
+        "rep": 25,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 4.4
+      },
+      {
+        "side": 3,
+        "rep": 26,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 5.6
+      },
+      {
+        "side": 3,
+        "rep": 27,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 1,
+        "first_try": false,
+        "time_sec": 4.5
+      },
+      {
+        "side": 3,
+        "rep": 28,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 3,
+        "first_try": false,
+        "time_sec": 4.6
+      },
+      {
+        "side": 3,
+        "rep": 29,
+        "final_state": "success",
+        "target_obstacles": 135,
+        "n_obstacles": 135,
+        "retries": 6,
+        "first_try": false,
+        "time_sec": 5.5
+      },
+      {
+        "side": 5,
+        "rep": 0,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 9.3
+      },
+      {
+        "side": 5,
+        "rep": 1,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 9,
+        "first_try": false,
+        "time_sec": 10.6
+      },
+      {
+        "side": 5,
+        "rep": 2,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 3,
+        "first_try": false,
+        "time_sec": 9.4
+      },
+      {
+        "side": 5,
+        "rep": 3,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 3,
+        "first_try": false,
+        "time_sec": 8.7
+      },
+      {
+        "side": 5,
+        "rep": 4,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 6,
+        "first_try": false,
+        "time_sec": 10.1
+      },
+      {
+        "side": 5,
+        "rep": 5,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 0,
+        "first_try": true,
+        "time_sec": 8.1
+      },
+      {
+        "side": 5,
+        "rep": 6,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 8.5
+      },
+      {
+        "side": 5,
+        "rep": 7,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 0,
+        "first_try": true,
+        "time_sec": 8.6
+      },
+      {
+        "side": 5,
+        "rep": 8,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 8.7
+      },
+      {
+        "side": 5,
+        "rep": 9,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 3,
+        "first_try": false,
+        "time_sec": 8.9
+      },
+      {
+        "side": 5,
+        "rep": 10,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 8.2
+      },
+      {
+        "side": 5,
+        "rep": 11,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 0,
+        "first_try": true,
+        "time_sec": 8.1
+      },
+      {
+        "side": 5,
+        "rep": 12,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 0,
+        "first_try": true,
+        "time_sec": 8.4
+      },
+      {
+        "side": 5,
+        "rep": 13,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 9.2
+      },
+      {
+        "side": 5,
+        "rep": 14,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 8.8
+      },
+      {
+        "side": 5,
+        "rep": 15,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 374,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 9.7
+      },
+      {
+        "side": 5,
+        "rep": 16,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 8.9
+      },
+      {
+        "side": 5,
+        "rep": 17,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 1,
+        "first_try": false,
+        "time_sec": 7.9
+      },
+      {
+        "side": 5,
+        "rep": 18,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 3,
+        "first_try": false,
+        "time_sec": 8.7
+      },
+      {
+        "side": 5,
+        "rep": 19,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 10,
+        "first_try": false,
+        "time_sec": 10.3
+      },
+      {
+        "side": 5,
+        "rep": 20,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 8,
+        "first_try": false,
+        "time_sec": 10.0
+      },
+      {
+        "side": 5,
+        "rep": 21,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 374,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 8.9
+      },
+      {
+        "side": 5,
+        "rep": 22,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 6,
+        "first_try": false,
+        "time_sec": 9.5
+      },
+      {
+        "side": 5,
+        "rep": 23,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 0,
+        "first_try": true,
+        "time_sec": 8.2
+      },
+      {
+        "side": 5,
+        "rep": 24,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 7,
+        "first_try": false,
+        "time_sec": 10.6
+      },
+      {
+        "side": 5,
+        "rep": 25,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 374,
+        "retries": 3,
+        "first_try": false,
+        "time_sec": 8.6
+      },
+      {
+        "side": 5,
+        "rep": 26,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 1,
+        "first_try": false,
+        "time_sec": 8.9
+      },
+      {
+        "side": 5,
+        "rep": 27,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 7,
+        "first_try": false,
+        "time_sec": 10.5
+      },
+      {
+        "side": 5,
+        "rep": 28,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 8.4
+      },
+      {
+        "side": 5,
+        "rep": 29,
+        "final_state": "success",
+        "target_obstacles": 375,
+        "n_obstacles": 375,
+        "retries": 9,
+        "first_try": false,
+        "time_sec": 10.3
+      },
+      {
+        "side": 8,
+        "rep": 0,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 7,
+        "first_try": false,
+        "time_sec": 20.4
+      },
+      {
+        "side": 8,
+        "rep": 1,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 18.9
+      },
+      {
+        "side": 8,
+        "rep": 2,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 15,
+        "first_try": false,
+        "time_sec": 21.9
+      },
+      {
+        "side": 8,
+        "rep": 3,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 13,
+        "first_try": false,
+        "time_sec": 21.4
+      },
+      {
+        "side": 8,
+        "rep": 4,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 19.0
+      },
+      {
+        "side": 8,
+        "rep": 5,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 8,
+        "first_try": false,
+        "time_sec": 20.0
+      },
+      {
+        "side": 8,
+        "rep": 6,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 18.6
+      },
+      {
+        "side": 8,
+        "rep": 7,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 6,
+        "first_try": false,
+        "time_sec": 19.9
+      },
+      {
+        "side": 8,
+        "rep": 8,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 899,
+        "retries": 6,
+        "first_try": false,
+        "time_sec": 19.4
+      },
+      {
+        "side": 8,
+        "rep": 9,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 11,
+        "first_try": false,
+        "time_sec": 20.6
+      },
+      {
+        "side": 8,
+        "rep": 10,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 18.9
+      },
+      {
+        "side": 8,
+        "rep": 11,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 899,
+        "retries": 8,
+        "first_try": false,
+        "time_sec": 19.9
+      },
+      {
+        "side": 8,
+        "rep": 12,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 12,
+        "first_try": false,
+        "time_sec": 21.0
+      },
+      {
+        "side": 8,
+        "rep": 13,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 19.0
+      },
+      {
+        "side": 8,
+        "rep": 14,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 898,
+        "retries": 5,
+        "first_try": false,
+        "time_sec": 19.9
+      },
+      {
+        "side": 8,
+        "rep": 15,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 6,
+        "first_try": false,
+        "time_sec": 19.7
+      },
+      {
+        "side": 8,
+        "rep": 16,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 13,
+        "first_try": false,
+        "time_sec": 21.5
+      },
+      {
+        "side": 8,
+        "rep": 17,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 17,
+        "first_try": false,
+        "time_sec": 23.3
+      },
+      {
+        "side": 8,
+        "rep": 18,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 7,
+        "first_try": false,
+        "time_sec": 20.5
+      },
+      {
+        "side": 8,
+        "rep": 19,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 899,
+        "retries": 9,
+        "first_try": false,
+        "time_sec": 20.3
+      },
+      {
+        "side": 8,
+        "rep": 20,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 899,
+        "retries": 3,
+        "first_try": false,
+        "time_sec": 19.1
+      },
+      {
+        "side": 8,
+        "rep": 21,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 19.6
+      },
+      {
+        "side": 8,
+        "rep": 22,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 19.4
+      },
+      {
+        "side": 8,
+        "rep": 23,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 3,
+        "first_try": false,
+        "time_sec": 18.0
+      },
+      {
+        "side": 8,
+        "rep": 24,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 6,
+        "first_try": false,
+        "time_sec": 19.8
+      },
+      {
+        "side": 8,
+        "rep": 25,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 17,
+        "first_try": false,
+        "time_sec": 22.1
+      },
+      {
+        "side": 8,
+        "rep": 26,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 5,
+        "first_try": false,
+        "time_sec": 19.1
+      },
+      {
+        "side": 8,
+        "rep": 27,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 19.3
+      },
+      {
+        "side": 8,
+        "rep": 28,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 4,
+        "first_try": false,
+        "time_sec": 19.6
+      },
+      {
+        "side": 8,
+        "rep": 29,
+        "final_state": "success",
+        "target_obstacles": 900,
+        "n_obstacles": 900,
+        "retries": 2,
+        "first_try": false,
+        "time_sec": 18.5
+      }
+    ],
+    "summary_by_size": {
+      "3x3": {
+        "target_obstacles": 135,
+        "valid_mosaics": 30,
+        "attempted": 30,
+        "rate": 1.0,
+        "ci_lo": 0.8864829086095221,
+        "ci_hi": 1.0,
+        "rate_after_repair": {
+          "successes": 30,
+          "attempted": 30,
+          "rate": 1.0,
+          "ci_lo": 0.8864829086095221,
+          "ci_hi": 1.0
+        },
+        "rate_before_repair": {
+          "successes": 5,
+          "attempted": 30,
+          "rate": 0.16666666666666666,
+          "ci_lo": 0.07336434240351683,
+          "ci_hi": 0.33564705185680177
+        },
+        "resolved_first_try": 5,
+        "resolved_after_repair": 25,
+        "retries_mean": 2.27,
+        "retries_max": 6,
+        "n_obstacles_mean": 134.9,
+        "mean_time_sec": 4.7
+      },
+      "5x5": {
+        "target_obstacles": 375,
+        "valid_mosaics": 30,
+        "attempted": 30,
+        "rate": 1.0,
+        "ci_lo": 0.8864829086095221,
+        "ci_hi": 1.0,
+        "rate_after_repair": {
+          "successes": 30,
+          "attempted": 30,
+          "rate": 1.0,
+          "ci_lo": 0.8864829086095221,
+          "ci_hi": 1.0
+        },
+        "rate_before_repair": {
+          "successes": 5,
+          "attempted": 30,
+          "rate": 0.16666666666666666,
+          "ci_lo": 0.07336434240351683,
+          "ci_hi": 0.33564705185680177
+        },
+        "resolved_first_try": 5,
+        "resolved_after_repair": 25,
+        "retries_mean": 3.5,
+        "retries_max": 10,
+        "n_obstacles_mean": 374.9,
+        "mean_time_sec": 9.1
+      },
+      "8x8": {
+        "target_obstacles": 900,
+        "valid_mosaics": 30,
+        "attempted": 30,
+        "rate": 1.0,
+        "ci_lo": 0.8864829086095221,
+        "ci_hi": 1.0,
+        "rate_after_repair": {
+          "successes": 30,
+          "attempted": 30,
+          "rate": 1.0,
+          "ci_lo": 0.8864829086095221,
+          "ci_hi": 1.0
+        },
+        "rate_before_repair": {
+          "successes": 0,
+          "attempted": 30,
+          "rate": 0.0,
+          "ci_lo": 0.0,
+          "ci_hi": 0.113517091390478
+        },
+        "resolved_first_try": 0,
+        "resolved_after_repair": 30,
+        "retries_mean": 6.97,
+        "retries_max": 17,
+        "n_obstacles_mean": 899.8,
+        "mean_time_sec": 20.0
+      }
+    },
+    "max_cell_retries": 20,
+    "repetitions": 30,
+    "sampling_regime": "fixed_total_target (~15 obstacles/cell)",
+    "verification_scope": {
+      "criterion": "single_route_corner_to_corner",
+      "hppm_routes_per_verification": 1,
+      "tile_12_route_criterion": false,
+      "note": "The mosaic is verified ONLY with the start->goal corner-to-corner route (default start=(0,0), goal=(columns, rows)); it is NOT re-verified with the per-tile 4*P port->center criterion (12 routes at P=3). Each individual tile did pass that criterion before placement."
+    },
+    "ci_note": "Wilson 95% CI. k/k successes is NOT a mathematical guarantee: it only bounds the true rate below by the CI's lower limit."
+  },
+  "cost": {
+    "pure_rejection": {
+      "hppm_runs_per_success": 319.41,
+      "acceptance_rate": 0.00463,
+      "candidates_per_sec": 3818.3,
+      "successes": 926,
+      "attempted": 200000,
+      "total_wall_time_sec": 52.4,
+      "seconds_per_successful_tile": 0.0566,
+      "worker_seconds_per_successful_tile": 1.6976,
+      "workers": 30,
+      "sampling_regime": "uniform_n_1_50",
+      "time_note": "end to end: random generation + geometric filter + HPPM verification, wall-clock with `workers` processes. worker_seconds = wall x workers (upper bound on CPU time, assumes the workers were saturated)."
+    },
+    "diffusion_plus_filter": {
+      "hppm_runs_per_success": 26.62,
+      "hppm_runs_total": 20681,
+      "successes": 777,
+      "candidates_evaluated": 3170,
+      "candidates_sampled": 5000,
+      "verified_success_rate": 0.2451,
+      "sampling_regime": "checkpoint_n_distribution",
+      "sampling_time_sec": 7.973,
+      "filter_time_sec": 1.158,
+      "verification_time_sec": 4.246,
+      "verification_cpu_time_sec": 118.822,
+      "total_wall_time_sec": 13.377,
+      "seconds_per_successful_tile": 0.0172,
+      "worker_seconds_per_successful_tile": 0.1647,
+      "workers": 30,
+      "time_note": "end to end = (a) DDIM sampling on the GPU + (b) geometric filtering + (c) HPPM verification (wall-clock with `workers` processes). Model loading excluded. worker_seconds = sampling + filter + summed per-candidate HPPM CPU time, i.e. the figure that does not depend on the worker count.",
+      "note": "does not include the amortized cost of generating the training dataset nor of training -- see section 11 of the report"
+    },
+    "local_repair": {
+      "hppm_runs_per_success": 209.6,
+      "source": "resumen_dataset_universal.md (generation of the 4 original batches)",
+      "note": "inherited figure, not re-measured in this run"
+    },
+    "cost_accounting": {
+      "dataset_generation_worker_hours": {
+        "value": null,
+        "unit": "CPU worker-hours, one-off, amortized over every model trained on this dataset",
+        "source": "NOT PROVIDED -- pass --dataset-generation-worker-hours"
+      },
+      "training_gpu_hours": {
+        "value": 0.485,
+        "unit": "hours on one RTX 4090 GPU, wall-clock, one training run (this seed)",
+        "source": "parsed from train_seed101.log (last 'step ... | N min' line)"
+      },
+      "inference_seconds_per_tile": {
+        "per_candidate_sampled": 0.00159,
+        "per_successful_tile": 0.01026,
+        "unit": "GPU wall-clock seconds of DDIM sampling (+ geometric filter in `filter_seconds_*`)",
+        "filter_seconds_per_successful_tile": 0.00149
+      },
+      "verification_seconds_per_tile": {
+        "per_candidate_wall": 0.00085,
+        "per_successful_tile_wall": 0.00546,
+        "per_successful_tile_cpu": 0.15292,
+        "workers": 30,
+        "unit": "seconds of HPPM verification; `wall` depends on the worker count, `cpu` does not"
+      },
+      "speedup_note": "The reported 'speedup' is the REDUCTION IN HPPM CALLS PER USEFUL TILE (cost.pure_rejection.hppm_runs_per_success / cost.diffusion_plus_filter.hppm_runs_per_success) under this experiment's conditions. It is NOT a speedup of the whole process: it excludes dataset generation and training, which are the four items above, in their own units, and are never summed here."
+    }
+  }
+}

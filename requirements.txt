@@ -1,0 +1,55 @@
+# ==========================================================================
+# Pinned versions for the training/evaluation environment (RTX 4090 servers).
+# Install in one step:
+#
+#   pip install -r requirements.txt
+#
+# These are the versions the project's training runs (including the 6-seed
+# variance study) were run against. If you bump any of them, re-run
+# src/pipeline/server_diagnostics.py and re-verify the diversity/memorization
+# numbers haven't shifted before trusting a comparison across seeds.
+# ==========================================================================
+
+# Wheel index with CUDA support (adjust cu124 if your CUDA toolkit differs)
+--extra-index-url https://download.pytorch.org/whl/cu124
+
+# --- Deep learning ---
+torch==2.9.1
+
+# --- Data ---
+numpy==2.4.6
+
+# --- Training / evaluation ---
+scipy==1.16.2
+scikit-learn==1.7.2
+
+# --- Plotting ---
+# Deliberately unpinned: matplotlib is only used with the Agg backend to draw
+# figures, so its version cannot affect a reported number, and pinning it would
+# needlessly narrow the environments this code installs in.
+matplotlib
+
+# ==========================================================================
+# C compiler used for engine/HPPMDinamico3.c -> engine/hppm
+#
+# NOT a pip package -- recorded here only so the binary's provenance is
+# reproducible. Fill this in with the output of `gcc --version` on the
+# machine that actually compiled the binary you are using (it varies per
+# server; do not assume it matches a previous machine's).
+#
+#   gcc version: <fill in from `gcc --version` on the training server>
+#   (`python3 -m src.pipeline.server_diagnostics` prints it and also flags any
+#   torch/numpy/scipy/scikit-learn version that differs from the pins above)
+#
+# Compile command (see README.md for the full procedure):
+#   gcc -O2 -o engine/hppm engine/HPPMDinamico3.c -lm
+#   chmod +x engine/hppm
+#
+# The binary is NOT versioned: rebuild it on every machine. An inherited
+# binary runs and exits successfully but silently yields ZERO successes.
+#
+# Historical note: the campaign's own notes recorded its build as
+# `gcc -O3 -o artifacts/hppm_v2 engine/HPPMDinamico3.c -lm`. Neither -O2 nor
+# -O3 enables fast-math, so the two are expected to agree; the command above
+# is the canonical one this repository documents.
+# ==========================================================================

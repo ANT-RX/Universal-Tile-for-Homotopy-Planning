@@ -1,0 +1,15 @@
+{
+  "metodo": "fast generation without repair (12 ports->center)",
+  "candidates_attempted": 200000,
+  "maps_success": 926,
+  "tasa_aceptacion": 0.00463,
+  "candidates_incomplete": 0,
+  "hppm_runs_total": 295777,
+  "hppm_runs_per_success": 319.41,
+  "candidates_per_sec": 3818.3,
+  "ports_per_side": 3,
+  "margen_puertos": 0.04,
+  "time_sec": 52.4,
+  "workers": 30,
+  "seed": 42
+}

@@ -1,0 +1,10 @@
+{
+  "built_by": "02b_leakage_dedup_fix.py",
+  "source_data": "tile-obstacle-maps.npz",
+  "source_data_sha256": "95a20e222a46057d1bfc3cb1d55c359fa1bca9d9ac064b8302c4bd2ceabdfcfe",
+  "source_rows": 600000,
+  "excluded_test_indices_from": "artifacts/test_holdout_final.npz.meta.json",
+  "n_excluded": 30000,
+  "n_train_rows": 570000,
+  "note": "training-only split; the 30,000 original holdout rows are removed"
+}
