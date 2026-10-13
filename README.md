@@ -3,15 +3,15 @@
 Reference implementation and evaluation code for the paper *Universal Tile-Based
 Obstacle Map Synthesis via Diffusion for Homotopy Planning* (ACDSA 2027).
 
-The method learns a permutation-invariant set diffusion model over small
-**universal** obstacle tiles -- tiles that admit a homotopy-continuing route
-between every pair of ports on their boundary -- and assembles them into
-arbitrarily large mosaics whose corner-to-corner route is then verified with the
-HPPM path-planning engine. This repository contains the code that produced the
-tables and figures of the paper.
+The method learns a permutation-equivariant set diffusion model over small
+**universal** obstacle tiles -- tiles the HPPM path-planning engine can traverse
+along all 12 port-to-centre routes, three equispaced ports per edge -- and
+assembles them into larger mosaics, validated up to 8x8, whose corner-to-corner
+route is then verified with the same engine. This repository contains the code
+that produced the tables and figures of the paper.
 
-> **Assets are not in this repository.** It is code only. The dataset (163 MB)
-> and the six checkpoints (1.3 GB) are hosted separately and fetched by
+> **Assets are not in this repository.** It is code only. The dataset (171 MB)
+> and the six checkpoints (1.4 GB) are hosted separately and fetched by
 > `scripts/download_assets.py`. See [§3](#3-download-the-data).
 
 ---
@@ -64,7 +64,7 @@ gcc -O2 -o engine/hppm engine/HPPMDinamico3.c -lm
 chmod +x engine/hppm
 ```
 
-> ### ⚠ Recompile on **every** machine.
+> ### Recompile on **every** machine.
 >
 > `engine/hppm` is a compiled binary and is deliberately **not** versioned (see
 > `.gitignore`). An inherited binary -- one built on a different machine and
@@ -121,19 +121,26 @@ nothing:
 python3 scripts/download_assets.py --check
 ```
 
-> **The checkpoints are not hosted yet.** `scripts/download_assets.py` prints a
-> clear message for them instead of failing. The campaign's full evaluation
-> battery was run with **seed 101**, so that one checkpoint is enough to
-> reproduce the per-seed results.
+The assets live in two Hugging Face repositories:
+
+* Dataset, plus both held-out splits and their sidecars:
+  <https://huggingface.co/datasets/jantrom/tile-obstacle-maps>
+* The six checkpoints, under `artifacts/ckpt_tiles_seed{101..106}/`:
+  <https://huggingface.co/jantrom/tile-obstacle-diffusion>
+
+The full evaluation battery was run with **seed 101**; the other five seeds were
+used to quantify run-to-run variance and only need the diversity tests.
 
 ## 4. Reproducing the results
 
 ### 4.1 The held-out test split
 
-The `.npz` holdouts are **not shipped** -- they are derived from the dataset.
-What is shipped are their `.meta.json` sidecars, which record exactly how each
-split was built (`test_indices`, `data_rows`, `data_sha256`, and for the
-deduplicated file `removed_row_positions`).
+The `.npz` holdouts are not versioned here -- they are derived from the dataset.
+What is shipped in this repository are their `.meta.json` sidecars, which record
+exactly how each split was built (`test_indices`, `data_rows`, `data_sha256`,
+and for the deduplicated file `removed_row_positions`). The `.npz` files
+themselves are available in the Hugging Face dataset repository if you would
+rather download them than rebuild them.
 
 `artifacts/test_holdout_final.npz` is carved out of the dataset once, with a
 fixed seed that is independent of the training `--seed`
@@ -149,7 +156,7 @@ python3 -m src.evaluation.check_split_leakage \
   --data tile-obstacle-maps.npz \
   --test artifacts/test_holdout_final.npz \
   --dedup-out artifacts/test_holdout_dedup.npz \
-  --output artifacts/leakage_report.json
+  --output artifacts/leakage_report_dedup.json
 ```
 
 Use the **deduplicated** file as `--reference-data` when evaluating the six
@@ -183,6 +190,10 @@ ema 0.9995, cfg-dropout 0.15, T 1000, d-model 256, layers 8, heads 8,
 test-frac 0.05, val-frac 0.05 and success-only (`True`, matching the six
 checkpoints, which all record `success_only: true`), with AdamW
 `weight_decay=0.01`, a cosine schedule and bf16 autocast.
+
+The published checkpoints come from exactly these settings, with one exception:
+seed 105 was checkpointed at 96,000 steps rather than 100,000. It is included in
+every reported aggregate.
 
 Every run must print `Test holdout REUSED` at startup. If any prints
 `(written)`, its `--data` is not the file the holdout was generated from and
@@ -243,6 +254,9 @@ Two flags are deliberately **exposed** because the paper sweeps them:
 `--n` / `--n-per-bin` and the other sample sizes are also flags, so a run can be
 repeated with more samples.
 
+Sampling itself is not swept: DDIM with 100 steps, `eta = 0` and guidance scale
+`1.0`, which is the configuration behind every number in the paper.
+
 ### 4.4 Configuration dump
 
 ```bash
@@ -262,10 +276,10 @@ verification criterion read from `verify_maps.py` at dump time.
 | `scripts/download_assets.py` | `tile-obstacle-maps.npz` | dataset: 600,000 tiles, sha256 `95a20e22…dcfe` (**Table I**) |
 | `set_diffusion train` | `artifacts/ckpt_tiles_seed*/` | the six trained checkpoints; also writes the held-out split |
 | `check_split_leakage` | `artifacts/leakage_report*.json` | per-`n`-bin near-duplicate audit of the split |
-| `paper_metrics --tests rate_by_n` | `1_rate_by_n/` | success rate vs number of obstacles, with Wilson CI |
-| `paper_metrics --tests cost` | `2_cost/` | sampling cost: pure rejection vs diffusion + filter |
+| `paper_metrics --tests rate_by_n` | `1_rate_by_n/` | success rate vs number of obstacles, with Wilson CI (**Table II**) |
+| `paper_metrics --tests cost` | `2_cost/` | sampling cost: pure rejection vs diffusion + filter (**Table III**) |
 | `paper_metrics --tests ddim_ablation` | `3_ddim_ablation/` | DDIM steps 10/25/50/100/250 (**Table IV**) |
-| `paper_metrics --tests diversity` | `4_diversity/` | C2ST AUC (+ CI and p-value), Chamfer diversity, memorization |
+| `paper_metrics --tests diversity` | `4_diversity/` | C2ST AUC (+ CI and p-value), Chamfer diversity, memorization (**Table V**) |
 | `paper_metrics --tests mosaics` | `5_mosaics/` | mosaic assembly, rate before/after repair, Wilson CI (**Table VI**) |
 | `dump_config` | `config_dump.{json,md}` | effective configuration, read from code at dump time |
 
